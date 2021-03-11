@@ -1,5 +1,6 @@
 package com.example.anchorbay.ui.editbay
 
+import android.location.Location
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -47,6 +48,18 @@ fun Nickname(value: String, onValueChange: (value: String) -> Unit) {
         placeholder = { Text(text = "Smeknamn") })
 }
 
+@Composable
+fun LocationAndDirection() {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+        IconButton(onClick = {}) {
+            Icon(Icons.Rounded.LocationOn, contentDescription = "")
+        }
+        IconButton(onClick = {}) {
+            Text(text = "NW", style = MaterialTheme.typography.h5)
+        }
+    }
+}
+
 
 @Composable
 fun EditBay() {
@@ -65,14 +78,7 @@ fun EditBay() {
         Column(Modifier.padding(16.dp)) {
             RatingBar(rating) { rating = it }
             Nickname(value = nickname, onValueChange = { nickname = it })
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                IconButton(onClick = {}) {
-                    Icon(Icons.Rounded.LocationOn, contentDescription = "")
-                }
-                IconButton(onClick = {}) {
-                    Text(text = "NW", style = MaterialTheme.typography.h5)
-                }
-            }
+            LocationAndDirection()
             LabelSelect()
             BoatSelect()
 
