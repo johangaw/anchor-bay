@@ -38,10 +38,20 @@ fun RatingBar(value: Int, onValueChange: (value: Int) -> Unit) {
     }
 }
 
+@Composable
+fun Nickname(value: String, onValueChange: (value: String) -> Unit) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = Modifier.fillMaxWidth(),
+        placeholder = { Text(text = "Smeknamn") })
+}
+
 
 @Composable
 fun EditBay() {
     var rating by remember { mutableStateOf(0) }
+    var nickname by remember { mutableStateOf("") }
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Image(
@@ -54,7 +64,7 @@ fun EditBay() {
         )
         Column(Modifier.padding(16.dp)) {
             RatingBar(rating) { rating = it }
-            OutlinedTextField(value = "", onValueChange = { }, modifier = Modifier.fillMaxWidth())
+            Nickname(value = nickname, onValueChange = { nickname = it })
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
                 IconButton(onClick = {}) {
                     Icon(Icons.Rounded.LocationOn, contentDescription = "")
