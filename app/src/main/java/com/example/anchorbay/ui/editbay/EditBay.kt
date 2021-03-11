@@ -1,5 +1,6 @@
 package com.example.anchorbay.ui
 
+import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.scrollable
@@ -7,10 +8,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowForward
+import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.anchorbay.R
+import com.example.anchorbay.ui.editbay.LabelSelect
 
 @Composable
 fun RatingBar() {
@@ -53,52 +60,39 @@ fun EditBay() {
         Column(Modifier.padding(16.dp)) {
             RatingBar()
             OutlinedTextField(value = "", onValueChange = { }, modifier = Modifier.fillMaxWidth())
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+               IconButton(onClick = {}) {
+                   Icon(Icons.Rounded.LocationOn, contentDescription = "")
+               }
+                IconButton(onClick = {}) {
+                    Text(text = "NW", style = MaterialTheme.typography.h5)
+                }
+            }
             LabelSelect()
+            BoatSelect()
+
+            var str by remember { mutableStateOf("")}
+            TextField(value = str, onValueChange = { str = it }, Modifier.fillMaxWidth(), singleLine = false,)
         }
     }
 }
-
 
 @Composable
-fun LabelSelect() {
-    val labels = remember {
-        mutableStateListOf(
-            "Grillklippa",
-            "Toa/dass",
-            "Affär",
-            "Resturang",
-            "kilar",
-            "kilar",
-            "kilar",
-            "kilar",
-            "kilar",
-            "kilar",
-        )
-    }
-
+fun BoatSelect() {
     Column(
-        Modifier.fillMaxWidth()
+        Modifier.padding(8.dp)
     ) {
-        for (label in labels) {
-            Row(
-                Modifier
-                    .padding(start = 4.dp, bottom = 4.dp)
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(Color.Cyan)
-                    .padding(8.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Box(
-                    Modifier
-                        .size(24.dp)
-                        .background(Color.Red)
-                )
-                Spacer(Modifier.width(4.dp))
-                Text(text = label)
-            }
+        Button(onClick = {}) {
+            Text(text = "Boat 1")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = {}) {
+            Text(text = "Boat 2")
         }
     }
 }
+
+
 
 @Composable
 @Preview(device = Devices.PIXEL_4_XL, showBackground = true, showSystemUi = true)
