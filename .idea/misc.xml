@@ -9,13 +9,24 @@
         <entry key="../../../../layout/compose-model-1615470129431.xml" value="0.2519556714471969" />
         <entry key="../../../../layout/compose-model-1615470200620.xml" value="0.2519556714471969" />
         <entry key="../../../../layout/compose-model-1615474501219.xml" value="0.2519556714471969" />
+        <entry key="../../../../layout/compose-model-1615476106203.xml" value="0.3264358108108108" />
+        <entry key="../../../../layout/compose-model-1615476849920.xml" value="0.19341216216216217" />
+        <entry key="../../../../layout/compose-model-1615479826294.xml" value="0.2675925925925926" />
+        <entry key="../../../../layout/compose-model-1615480488863.xml" value="0.32592592592592595" />
+        <entry key="../../../../layout/compose-model-1615481033327.xml" value="0.22592905405405406" />
+        <entry key="../../../../layout/compose-model-1615481559653.xml" value="0.21054852320675105" />
+        <entry key="../../../../layout/compose-model-1615482376833.xml" value="0.22151898734177214" />
+        <entry key="../../../../layout/compose-model-1615483131489.xml" value="1.8808664259927799" />
+        <entry key="../../../../layout/compose-model-1615541383509.xml" value="1.4620938628158844" />
+        <entry key="../../../../layout/compose-model-1615541695826.xml" value="0.29434121621621623" />
+        <entry key="../../../../layout/compose-model-1615561074135.xml" value="0.19324894514767932" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_outline_24.xml" value="0.3921875" />
         <entry key="app/src/main/res/drawable/star_filled.xml" value="0.3921875" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
