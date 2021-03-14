@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.anchorbay.R
 import com.example.anchorbay.data.Label
+import com.example.anchorbay.data.Localisation
 
 @Composable
 fun RatingBar(value: Int, onValueChange: (value: Int) -> Unit) {
@@ -48,24 +47,13 @@ fun Nickname(value: String, onValueChange: (value: String) -> Unit) {
         placeholder = { Text(text = "Smeknamn") })
 }
 
-@Composable
-fun LocationAndDirection() {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-        IconButton(onClick = {}) {
-            Icon(Icons.Rounded.LocationOn, contentDescription = "")
-        }
-        IconButton(onClick = {}) {
-            Text(text = "NW", style = MaterialTheme.typography.h5)
-        }
-    }
-}
-
 
 @Composable
 fun EditBay() {
     var rating by remember { mutableStateOf(0) }
     var nickname by remember { mutableStateOf("") }
     var labels by remember { mutableStateOf(listOf<Label>()) }
+    var localisation by remember { mutableStateOf(Localisation("", null)) }
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Image(
@@ -79,8 +67,10 @@ fun EditBay() {
         Column(Modifier.padding(16.dp)) {
             RatingBar(rating) { rating = it }
             Nickname(value = nickname, onValueChange = { nickname = it })
-            LocationAndDirection()
-            LabelSelect(labels, {labels = it})
+            Spacer(modifier = Modifier.height(16.dp))
+            LocationAndDirection(localisation, { localisation = it })
+            Spacer(modifier = Modifier.height(16.dp))
+            LabelSelect(labels, { labels = it })
             BoatSelect()
 
             var str by remember { mutableStateOf("") }

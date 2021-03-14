@@ -7,6 +7,12 @@ enum class LabelCategory {
 
 data class Label(val text: String, val category: LabelCategory)
 
+enum class Direction {
+    N, NE, E, SE, S, SW, W, NW
+}
+
+data class Localisation(val location: String, val direction: Direction?)
+
 val baseLabels = listOf(
     Label("Toalett", LabelCategory.Facilities),
     Label("Dass", LabelCategory.Facilities),
@@ -22,3 +28,4 @@ val baseLabels = listOf(
     Label("Hoppklippor", LabelCategory.Nature),
     Label("Utsiktstopp", LabelCategory.Nature),
 )
+
