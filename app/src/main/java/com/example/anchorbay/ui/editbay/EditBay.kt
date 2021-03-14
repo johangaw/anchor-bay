@@ -1,6 +1,5 @@
 package com.example.anchorbay.ui.editbay
 
-import android.location.Location
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.anchorbay.R
+import com.example.anchorbay.data.Label
 
 @Composable
 fun RatingBar(value: Int, onValueChange: (value: Int) -> Unit) {
@@ -65,6 +65,7 @@ fun LocationAndDirection() {
 fun EditBay() {
     var rating by remember { mutableStateOf(0) }
     var nickname by remember { mutableStateOf("") }
+    var labels by remember { mutableStateOf(listOf<Label>()) }
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Image(
@@ -79,7 +80,7 @@ fun EditBay() {
             RatingBar(rating) { rating = it }
             Nickname(value = nickname, onValueChange = { nickname = it })
             LocationAndDirection()
-            LabelSelect()
+            LabelSelect(labels, {labels = it})
             BoatSelect()
 
             var str by remember { mutableStateOf("") }
