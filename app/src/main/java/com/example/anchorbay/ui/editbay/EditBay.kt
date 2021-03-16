@@ -1,5 +1,6 @@
 package com.example.anchorbay.ui.editbay
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -17,8 +18,10 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.anchorbay.R
+import com.example.anchorbay.data.Boat
 import com.example.anchorbay.data.Label
 import com.example.anchorbay.data.Localisation
+import com.example.anchorbay.data.availableBoats
 
 @Composable
 fun RatingBar(value: Int, onValueChange: (value: Int) -> Unit) {
@@ -48,12 +51,15 @@ fun Nickname(value: String, onValueChange: (value: String) -> Unit) {
 }
 
 
+@ExperimentalAnimationApi
+@ExperimentalMaterialApi
 @Composable
 fun EditBay() {
     var rating by remember { mutableStateOf(0) }
     var nickname by remember { mutableStateOf("") }
     var labels by remember { mutableStateOf(listOf<Label>()) }
     var localisation by remember { mutableStateOf(Localisation("", null)) }
+    var boat by remember { mutableStateOf<Boat?>(null)}
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Image(
@@ -71,7 +77,7 @@ fun EditBay() {
             LocationAndDirection(localisation, { localisation = it })
             Spacer(modifier = Modifier.height(16.dp))
             LabelSelect(labels, { labels = it })
-            BoatSelect()
+            BoatSelect(boat, {boat = it}, availableBoats)
 
             var str by remember { mutableStateOf("") }
             TextField(
@@ -84,22 +90,9 @@ fun EditBay() {
     }
 }
 
-@Composable
-fun BoatSelect() {
-    Column(
-        Modifier.padding(8.dp)
-    ) {
-        Button(onClick = {}) {
-            Text(text = "Boat 1")
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = {}) {
-            Text(text = "Boat 2")
-        }
-    }
-}
 
-
+@ExperimentalAnimationApi
+@ExperimentalMaterialApi
 @Composable
 @Preview(device = Devices.PIXEL_4_XL, showBackground = true, showSystemUi = true)
 fun EditBayPreview() {

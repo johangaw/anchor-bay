@@ -29,3 +29,12 @@ val baseLabels = listOf(
     Label("Utsiktstopp", LabelCategory.Nature),
 )
 
+data class Boat(val name: String)
+
+val availableBoats = listOf(
+    Boat("Katla"),
+    Boat("Legolas III"),
+    Boat("Kraken"),
+    Boat("Talassa"),
+    Boat("Sö gull"),
+)
