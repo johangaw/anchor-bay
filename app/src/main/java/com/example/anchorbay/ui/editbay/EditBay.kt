@@ -60,6 +60,7 @@ fun EditBay() {
     var labels by remember { mutableStateOf(listOf<Label>()) }
     var localisation by remember { mutableStateOf(Localisation("", null)) }
     var boat by remember { mutableStateOf<Boat?>(null)}
+    var comments by remember { mutableStateOf("") }
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Image(
@@ -78,12 +79,10 @@ fun EditBay() {
             Spacer(modifier = Modifier.height(16.dp))
             LabelSelect(labels, { labels = it })
             BoatSelect(boat, {boat = it}, availableBoats)
-
-            var str by remember { mutableStateOf("") }
             TextField(
-                value = str,
-                onValueChange = { str = it },
-                Modifier.fillMaxWidth(),
+                value = comments,
+                onValueChange = { comments = it },
+                modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 200.dp),
                 singleLine = false,
             )
         }
