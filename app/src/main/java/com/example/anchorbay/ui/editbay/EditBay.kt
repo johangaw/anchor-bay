@@ -1,17 +1,13 @@
 package com.example.anchorbay.ui.editbay
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
@@ -22,24 +18,7 @@ import com.example.anchorbay.data.Boat
 import com.example.anchorbay.data.Label
 import com.example.anchorbay.data.Localisation
 import com.example.anchorbay.data.availableBoats
-
-@Composable
-fun RatingBar(value: Int, onValueChange: (value: Int) -> Unit) {
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-        repeat(5) {
-            val selected = it < value
-            val color by animateColorAsState(targetValue = if (selected) Color.Yellow else Color.Black)
-            Image(
-                modifier = Modifier
-                    .clickable { onValueChange(it + 1) }
-                    .size(50.dp),
-                painter = painterResource(if (selected) R.drawable.star_filled else R.drawable.start_unfilled),
-                colorFilter = ColorFilter.tint(color = color),
-                contentDescription = null
-            )
-        }
-    }
-}
+import com.example.anchorbay.ui.common.RatingBar
 
 @Composable
 fun Nickname(value: String, onValueChange: (value: String) -> Unit) {

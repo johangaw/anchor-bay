@@ -38,3 +38,12 @@ val availableBoats = listOf(
     Boat("Talassa"),
     Boat("Sö gull"),
 )
+
+data class Bay(
+    val rating: Int = 0,
+    val nickname: String = "",
+    val labels: List<Label> = emptyList(),
+    val localisation: Localisation = Localisation("", null),
+    val boat: Boat? = null,
+    val comments: String = "",
+)
