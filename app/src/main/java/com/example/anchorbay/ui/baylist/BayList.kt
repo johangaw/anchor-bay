@@ -25,7 +25,7 @@ import com.example.anchorbay.data.Bay
 
 @ExperimentalMaterialApi
 @Composable()
-fun BayList(bays: List<Bay>, onEditBay: (bay: Bay) -> Unit, onNewBay: () -> Unit) {
+fun BayList(bays: List<Bay>, onSelectBay: (bay: Bay) -> Unit, onNewBay: () -> Unit) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = onNewBay) {
@@ -49,7 +49,7 @@ fun BayList(bays: List<Bay>, onEditBay: (bay: Bay) -> Unit, onNewBay: () -> Unit
                         Rating(bay.rating)
                     },
                     modifier = Modifier
-                        .clickable { onEditBay(bay) }
+                        .clickable { onSelectBay(bay) }
                         .padding(bottom = 8.dp)
                 )
                 Divider()

@@ -13,6 +13,10 @@ class BayViewModel: ViewModel() {
         _bays.value = _bays.value?.plus(bay)
     }
 
+    fun getBay(bayId: String): Bay? {
+        return bays.value?.find { it.nickname == bayId }
+    }
+
     fun updateBay(bay: Bay) {
 
     }
