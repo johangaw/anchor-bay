@@ -25,12 +25,7 @@ import com.example.anchorbay.data.Bay
 
 @ExperimentalMaterialApi
 @Composable()
-fun BayList(onEditBay: (bay: Bay) -> Unit, onNewBay: () -> Unit) {
-    val bays: List<Bay> = listOf(
-        Bay(nickname = "Kråkholmen", rating = 4),
-        Bay(nickname = "Klubbholmen", rating = 2),
-        Bay(nickname = "Badviken", rating = 5),
-    )
+fun BayList(bays: List<Bay>, onEditBay: (bay: Bay) -> Unit, onNewBay: () -> Unit) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = onNewBay) {
@@ -84,5 +79,10 @@ fun Rating(rating: Int) {
 @Composable
 @Preview(device = Devices.PIXEL_4_XL, showBackground = true, showSystemUi = true)
 fun BayListPreview() {
-    BayList({}, {})
+    val bays: List<Bay> = listOf(
+        Bay(nickname = "Kråkholmen", rating = 4),
+        Bay(nickname = "Klubbholmen", rating = 2),
+        Bay(nickname = "Badviken", rating = 5),
+    )
+    BayList(bays, {}, {})
 }

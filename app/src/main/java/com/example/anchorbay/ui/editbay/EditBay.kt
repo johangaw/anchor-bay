@@ -14,10 +14,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.anchorbay.R
-import com.example.anchorbay.data.Boat
-import com.example.anchorbay.data.Label
-import com.example.anchorbay.data.Localisation
-import com.example.anchorbay.data.availableBoats
+import com.example.anchorbay.data.*
 import com.example.anchorbay.ui.common.RatingBar
 
 @Composable
@@ -33,15 +30,8 @@ fun Nickname(value: String, onValueChange: (value: String) -> Unit) {
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @Composable
-fun EditBay() {
-    var rating by remember { mutableStateOf(0) }
-    var nickname by remember { mutableStateOf("") }
-    var labels by remember { mutableStateOf(listOf<Label>()) }
-    var localisation by remember { mutableStateOf(Localisation("", null)) }
-    var boat by remember { mutableStateOf<Boat?>(null)}
-    var comments by remember { mutableStateOf("") }
-
-    Column(Modifier.verticalScroll(rememberScrollState())) {
+fun EditBay(bay: Bay, onBayChange: (bay: Bay) -> Unit) {
+    Column {
         Image(
             painter = painterResource(R.drawable.hero),
             contentScale = ContentScale.FillHeight,
@@ -51,17 +41,19 @@ fun EditBay() {
                 .height(250.dp)
         )
         Column(Modifier.padding(16.dp)) {
-            RatingBar(rating) { rating = it }
-            Nickname(value = nickname, onValueChange = { nickname = it })
+            RatingBar(bay.rating) { onBayChange(bay.copy(rating = it)) }
+            Nickname(value = bay.nickname, onValueChange = { onBayChange(bay.copy(nickname = it ))})
             Spacer(modifier = Modifier.height(16.dp))
-            LocationAndDirection(localisation, { localisation = it })
+            LocationAndDirection(bay.localisation, { onBayChange(bay.copy(localisation = it)) })
             Spacer(modifier = Modifier.height(16.dp))
-            LabelSelect(labels, { labels = it })
-            BoatSelect(boat, {boat = it}, availableBoats)
+            LabelSelect(bay.labels, { onBayChange(bay.copy(labels = it)) })
+            BoatSelect(bay.boat, { onBayChange(bay.copy(boat = it)) }, availableBoats)
             TextField(
-                value = comments,
-                onValueChange = { comments = it },
-                modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 200.dp),
+                value = bay.comments,
+                onValueChange = { onBayChange(bay.copy(comments = it)) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 200.dp),
                 singleLine = false,
             )
         }
@@ -74,5 +66,6 @@ fun EditBay() {
 @Composable
 @Preview(device = Devices.PIXEL_4_XL, showBackground = true, showSystemUi = true)
 fun EditBayPreview() {
-    EditBay()
+    var bay by remember { mutableStateOf(Bay())}
+    EditBay(bay, {bay = it})
 }
